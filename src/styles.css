@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+.inner{
+    margin-bottom:50px;
+}
+
+
+
+
+.card-img-right {
+  height: 100%;
+  border-radius: 0 3px 3px 0;
+}
+
+.flex-auto {
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.h-250 { height: 250px; }
+@media (min-width: 768px) {
+  .h-md-250 { height: 250px; }
+}

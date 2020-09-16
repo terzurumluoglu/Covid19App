@@ -1,0 +1,44 @@
+<main role="main" class="inner cover">
+    <form [formGroup]="virusForm" class="needs-validation" (ngSubmit)="submit()">
+        <div class="form-group">
+            <input formControlName="date" type="date" name="bday" [max]="today" min="2020-01-01"
+                class="form-control">
+        </div>
+        <div class="form-group">
+            <select formControlName="country" class="form-control" id="sel1">
+                <option *ngFor="let country of countries" [innerText]="country?.name" [value]="country?.alpha2code">
+                </option>
+            </select>
+        </div>
+        <button type="submit" [disabled]="virusForm.invalid" class="btn btn-primary btn-md btn-block">Submit</button>
+    </form>
+</main>
+
+<div class="row mb-2" style="min-height: 250px;">
+    <div class="col-md-12" *ngIf="isSubmitted">
+        <div
+            class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <h3 class="mb-0" [innerText]="response[0]?.country"></h3>
+                <div class="mb-1 text-muted" [innerText]="selectedDate"></div>
+                <div class="row mt-4" *ngIf="response[0]?.provinces[0]?.active">
+                    <div class="col-md-4">
+                        <strong class="d-inline-block mb-2 text-primary">Confirmed</strong>
+                        <p class="card-text mb-auto" [innerText]="response[0]?.provinces[0].confirmed"></p>
+                    </div>
+                    <div class="col-md-4">
+                        <strong class="d-inline-block mb-2 text-success">Recovered</strong>
+                        <p class="card-text mb-auto" [innerText]="response[0]?.provinces[0].recovered"></p>
+                    </div>
+                    <div class="col-md-4">
+                        <strong class="d-inline-block mb-2 text-danger">Deaths</strong>
+                        <p class="card-text mb-auto" [innerText]="response[0]?.provinces[0].deaths"></p>
+                    </div>
+                </div>
+                <div class="row mt-4" *ngIf="!response[0]?.provinces[0]?.active">
+                    <h3 class="mb-0 mr-auto ml-auto text-primary">No Data Found</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
